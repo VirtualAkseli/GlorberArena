@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Topic</th>
+      <th>Post</th>
+      <th>AUthor</th>
+    </tr>
+    {% for post in posts %}
+    <tr>
+      <td>{{ post.topic }}</td>
+      <td>{{ post.content }}</td>
+      <td>{{ post.author }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

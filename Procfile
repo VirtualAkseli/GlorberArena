@@ -1,1 +1,1 @@
-web: gunicorn --preload --workers 1 glrArena:app
+web: gunicorn --preload --workers 1 application:app

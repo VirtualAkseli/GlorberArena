@@ -6,6 +6,9 @@
     </head>
 
     <body>
+	<a href="{{ url_for('posts_index') }}">See all posts</a>
+	<a href="{{ url_for('posts_form') }}">Write a post</a>
+
       {% block body %}
      
       {% endblock %}
