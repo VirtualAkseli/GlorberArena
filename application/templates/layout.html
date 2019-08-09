@@ -6,6 +6,13 @@
     </head>
 
     <body>
+	{% if current_user.is_authenticated %}
+	<p> Logged in <a href="{{ url_for('auth_logout') }}">Log out</a></p>
+	{% else %}
+	<a href="{{url_for('auth_login') }}">Log in</a>
+	{% endif %}
+
+        <a href="{{ url_for('posts_main') }}">Main page</a>
 	<a href="{{ url_for('posts_index') }}">See all posts</a>
 	<a href="{{ url_for('posts_form') }}">Write a post</a>
 
