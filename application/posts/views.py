@@ -10,7 +10,9 @@ from application.posts.forms import PostForm
 def posts_main():
     return render_template("index.html")
 
+
 @app.route("/index", methods=["GET"])
+@login_required
 def posts_index():
     return render_template("posts/list.html", posts = Post.query.all())
 

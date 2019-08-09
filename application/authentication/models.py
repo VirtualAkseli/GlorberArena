@@ -9,17 +9,17 @@ class User(db.Model):
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
                               onupdate=db.func.current_timestamp())
 
-    
+    name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
     admin = db.Column(db.Boolean(False))
 
     posts = db.relationship("Post", backref='account', lazy=True)
 
-    def __init__(self, username, password):
+    def __init__(self, name):
        
-        self.username = username
-        self.password = password
+        self.name = name
+        
 	
   
     def get_id(self):
