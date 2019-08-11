@@ -8,13 +8,26 @@
 	    <li>{{ error }}</li>
 	    {% endfor %}
 	  </ul>
+          
 	</td>
-<tr>
 
+<table>
+<tr>
 <th>
-  {{ form.content }}
+    {{ form.topic.label }}
+</th>
+<th>
+    {{ form.topic}}
 </th>
 </tr>
+<tr>
+<th>
+</th>
+<th>
+    {{ form.content}}
+</th>
+</tr>
+</table>
   <input type="submit" value="Submit new post"/>
 </form>
 {% endblock %}

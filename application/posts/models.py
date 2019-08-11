@@ -1,4 +1,5 @@
 from application import db
+from application.authentication.models import User
 
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

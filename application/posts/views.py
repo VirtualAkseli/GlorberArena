@@ -31,6 +31,8 @@ def posts_create():
     	return render_template("posts/write.html", form = form)
 
     a = Post(request.form.get("content"))
+    a.topic = form.topic.data
+    a.author = current_user.name
     a.account_id = current_user.id
     db.session().add(a)
   

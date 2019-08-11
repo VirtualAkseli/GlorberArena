@@ -1,5 +1,6 @@
 from application import db
 
+
 class User(db.Model):
 
     __tablename__ = "account"
@@ -33,3 +34,6 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def get_name(self):
+        return self.name

@@ -1,8 +1,8 @@
 from flask import Flask
 app = Flask(__name__)
 
-from application import glrArena 
 
+from application import glrArena
 from flask_sqlalchemy import SQLAlchemy
 
 import os
@@ -15,7 +15,7 @@ else:
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
-from application import glrArena
+
 from application.posts import models
 from application.posts import views
 from application.authentication import models 
