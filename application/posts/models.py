@@ -42,8 +42,8 @@ class Post(db.Model):
 	@staticmethod
 	def find_matching_topic_for_post(topic_id):
 		statement = text("SELECT Post.id, Post.content, Post.author FROM Post"
-				" LEFT JOIN subject ON subject.id = subject_id"
-				" WHERE (subject_id = :topic_id)"
+				" LEFT JOIN subject ON subject.id = Post.subject_id"
+				" WHERE (Post.subject_id = :topic_id)"
 				" GROUP BY Post.id").params(topic_id=topic_id)
 		result = db.engine.execute(statement)
 
