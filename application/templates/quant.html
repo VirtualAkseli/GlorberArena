@@ -1,0 +1,16 @@
+
+{% extends "layout.html" %}
+
+{% block body %}
+<p>
+  <img src="kociolek.gif" alt="./kociolek" />
+	
+</p>
+{%if res is defined %}
+<p>
+{{res.fetchall()}}
+</p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+  <table width="100%">
+	<style>
+	table, article, td, p {
+	    border: 1px solid black;
+	    padding: 3px;
+	   }
+	</style>
+	
+    
+<p><th>{{ subject.name }}</th> </p>
+    
+<table width="100%">
+
+    {% for post in posts %}
+
+      <table width="100%">
+      
+    <div class="row">
+	<div class="col align-self-center">
+    <tr>
+      
+      <td>{{ post.content }}</td>
+      
+    </tr>
+	</div>
+	<div class="row align-self-center">
+    <tr>
+	<td>{{ post.author }}</td></td>
+    </tr>
+	</div>
+    </table>
+    <p></p>
+
+    {% endfor %}
+</table>
+    
+	
+  </table>
+
+
+
+<form method="POST" action="{{ url_for('posts_reply', topic_id = subject.id) }}">
+ 	<td>
+
+	  <ul>
+	    {% for error in form.content.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+          
+	</td>
+
+<table>
+
+<tr>
+
+<th>
+    {{ form.content}}
+</th>
+</tr>
+</table>
+  <input type="submit" value="Submit reply"/>
+</form>
+</div>
+
+{% endblock %}

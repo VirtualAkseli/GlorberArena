@@ -1,5 +1,6 @@
 from application import db
 
+from sqlalchemy.sql import text
 
 class User(db.Model):
 
@@ -21,6 +22,14 @@ class User(db.Model):
        
         self.name = name
         
+    @staticmethod
+    def find_quant_of_posts_by_user():
+        a = text("SELECT account.id, COUNT(Post.id) FROM account"
+                 " LEFT JOIN Post ON Post.account_id = account.id"
+                 " GROUP BY account.id")
+        res = db.engine.execute(a)
+
+        return res
 	
   
     def get_id(self):
@@ -37,3 +46,5 @@ class User(db.Model):
 
     def get_name(self):
         return self.name
+
+

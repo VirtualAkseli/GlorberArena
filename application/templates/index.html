@@ -3,6 +3,26 @@
 {% block body %}
 <p>
   <h2> Welcome to Glörber Arena </h2>
+	<table width="100%">
+	<style>
+	table, article, td {
+	    border: 1px solid black;
+	    padding: 3px;
+	   }
+	</style>
 	
+    
+    {% for topic in topics %}
+<table width="100%">
+    
+      <th><a href="{{ url_for('post_id', topic_id = topic.id) }}" >{{ topic.name }}</a></th>
+      
+    
+    {% endfor %}
 </p>
 {% endblock %}
+
+
+  
+	
+

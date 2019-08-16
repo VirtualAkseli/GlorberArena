@@ -2,7 +2,15 @@
 
 {% block body %}
 {{ error }}
-<form method="POST" action="{{ url_for('auth_login') }}">
+<style>
+	table, article, td, p {
+	    border: 1px solid black;
+	    padding: 3px;
+	   }
+	</style>
+
+
+<form method="POST" action="{{ url_for('auth_login') }}" class="form-signin">
   <table>
     <tr>
       
