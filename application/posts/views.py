@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 from application.posts.models import Post
 from application.posts.subject import Topic
 from application.authentication.models import User
-from application.posts.forms import PostForm, ReplyForm
+from application.posts.forms import PostForm, ReplyForm, EditForm
 
 
 @app.route("/main")
@@ -67,13 +67,30 @@ def posts_reply(topic_id):
   
     return redirect(url_for("post_id", topic_id=topic_id))
 
+@app.route("/posts/<post_id>", methods=["POST"])
+@login_required
+def post_edit(post_id):
+    form = EditForm(request.form)
+    post = Post.query.filter_by(id=post_id).first()
+    post.content = form.content.data
+
+    db.session.add(post)
+    db.session.commit()
+
+    return redirect(url_for("post_id", topic_id=post.subject_id))
+
+@app.route("/posts/<post_id>/edit")
+@login_required
+def post_edit1(post_id):
+    return render_template("posts/edit.html", id=post_id, form = EditForm())
+
 
 @app.route("/posts/<topic_id>")
 @login_required
 def post_id(topic_id):
     
     topic = Topic.query.filter_by(id=topic_id).first()
-    return render_template("posts/single.html", posts = Post.find_matching_topic_for_post(topic_id), subject=topic, form = ReplyForm())
+    return render_template("posts/single.html", posts = Post.find_matching_topic_for_post(topic_id), subject=topic, form = ReplyForm(), user_id = current_user.id)
 
 
 

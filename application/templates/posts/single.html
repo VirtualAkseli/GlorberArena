@@ -13,7 +13,7 @@
     
 <p><th>{{ subject.name }}</th> </p>
     
-<table width="100%">
+<table width="100%" id="postlist">
 
     {% for post in posts %}
 
@@ -30,11 +30,20 @@
 	<div class="row align-self-center">
     <tr>
 	<td>{{ post.author }}</td></td>
+	
     </tr>
+	
 	</div>
+	</div>
+	
     </table>
-    <p></p>
+	{% if post.account_id == user_id %}
+    <p><a href="{{ url_for('post_edit1', post_id = post.id) }}">Edit</a></p>
 
+	{% else %}
+	
+	<p></p>
+	{% endif %}
     {% endfor %}
 </table>
     
