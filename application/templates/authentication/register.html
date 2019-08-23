@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<style>
+	table, article, td, p {
+	    border: 1px solid black;
+	    padding: 3px;
+	   }
+	</style>
+
+
+<form method="POST" action="{{ url_for('auth_register') }}" class="form-signin">
+  <table>
+    <tr>
+      
+      <td>
+	{{ form.name.label }}
+	{{ form.name }}
+      </td>
+
+	    <td>
+		{{ form.username.label }}
+		{{ form.username }}
+            </td>
+
+      <td>
+	{{ form.password.label }}	
+	{{ form.password }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Login"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

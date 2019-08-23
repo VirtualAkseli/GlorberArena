@@ -25,6 +25,8 @@ def posts_index():
 def posts_form():
     return render_template("posts/write.html", form = PostForm())
 
+
+
 @app.route("/posts/", methods=["POST"])
 @login_required
 def posts_create():

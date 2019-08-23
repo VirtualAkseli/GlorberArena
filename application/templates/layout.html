@@ -18,7 +18,9 @@
 	{% if current_user.is_authenticated %}
 	<p> Logged in <a href="{{ url_for('auth_logout') }}">Log out</a></p>
 	{% else %}
-	<a href="{{url_for('auth_login') }}">Log in</a>
+	<p> <a href="{{url_for('auth_login') }}">Log in</a>
+	<a href="{{url_for('auth_register') }}">Sign up</a>
+	</p>
 	{% endif %}
 
         <a href="{{ url_for('posts_main') }}">Main page</a>

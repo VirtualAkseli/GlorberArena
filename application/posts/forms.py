@@ -10,6 +10,7 @@ class PostForm(FlaskForm):
     class Meta:
         csrf = False
 
+
 class EditForm(FlaskForm):
     
     
