@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h3>{{ account.name }}'s profile</h3>
+    <div>User since {{ account.date_created }}</div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"/>
+    <div>Number of posts: {{ no_posts }}</div>
+    <div>{% for post in posts %}
+	  <a href="">{{ post.topic }}</a>
+	  {% endfor %}
+    </div>
+{% endblock %}

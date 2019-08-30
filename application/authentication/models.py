@@ -14,6 +14,7 @@ class User(db.Model):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    
     admin = db.Column(db.Boolean(False))
 
     posts = db.relationship("Post", backref='account', lazy=True)
@@ -23,14 +24,29 @@ class User(db.Model):
         self.name = name
         
     @staticmethod
-    def find_quant_of_posts_by_user():
-        a = text("SELECT account.id, COUNT(Post.id) FROM account"
-                 " LEFT JOIN Post ON Post.account_id = account.id"
-                 " GROUP BY account.id")
+    def find_quant_of_posts_by_user(user_id):
+        
+        a = text("SELECT COUNT(Post.id) FROM Post"
+                 " LEFT JOIN account ON account.id = Post.account_id"
+                 " WHERE (account_id = :user_id)").params(user_id=user_id)
         res = db.engine.execute(a)
-
-        return res
+        b = []
+        for row in res:
+                b.append(row[0])
+        return b[0]
 	
+
+    @staticmethod
+    def find_posts_by_user(user_id):
+        
+        a = text("SELECT * FROM Post"
+                 " LEFT JOIN account ON account.id = Post.account_id"
+                 " WHERE (account_id = :user_id)").params(user_id=user_id)
+        res = db.engine.execute(a)
+        b = []
+        for row in res:
+                b.append({"id":row[0], "topic":row[1]})
+        return b
   
     def get_id(self):
         return self.id

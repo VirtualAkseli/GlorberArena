@@ -28,3 +28,5 @@ class Topic(db.Model):
                 response.append({"id":row[0], "name":row[1]})
 
             return response
+
+        

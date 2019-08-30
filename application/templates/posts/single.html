@@ -2,41 +2,38 @@
 
 {% block body %}
 <div class="container">
-  <table width="100%">
-	<style>
-	table, article, td, p {
-	    border: 1px solid black;
-	    padding: 3px;
-	   }
-	</style>
+
+	
 	
     
-<p><th>{{ subject.name }}</th> </p>
+
+<h5>{{ subject.name }}</h5>
+ 
+<p>
+Replies: {{ volume[0] - 1 }}
+
+</p>
     
-<table width="100%" id="postlist">
 
     {% for post in posts %}
 
-      <table width="100%">
       
-    <div class="row">
-	<div class="col align-self-center">
-    <tr>
       
-      <td>{{ post.content }}</td>
-      
-    </tr>
-	</div>
-	<div class="row align-self-center">
-    <tr>
-	<td>{{ post.author }}</td></td>
+    <div class="col">
 	
-    </tr>
+      <p>{{ post.content }}</p>
+      
+    
+	
+	
+	<p><a href="{{ url_for('profile_view', account_name = post.author) }}">{{ post.author }}</a></p>
+	
+    
+	
 	
 	</div>
-	</div>
 	
-    </table>
+    
 	{% if post.account_id == user_id %}
     <p><a href="{{ url_for('post_edit1', post_id = post.id) }}">Edit</a></p>
 
@@ -45,10 +42,9 @@
 	<p></p>
 	{% endif %}
     {% endfor %}
-</table>
-    
+
 	
-  </table>
+
 
 
 

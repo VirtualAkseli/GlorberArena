@@ -3,10 +3,16 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>mysteryPage</title>
+      <title>Glörber_Arena</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="icon" href="./kociolek.gif">
-
+     
+	
+	<style>
+	table, td, th, div, p {
+	    border: 1px solid black;
+	    padding: 10px;
+	   }
+	</style>
     </head>
 
     <body>
@@ -17,6 +23,7 @@
 	
 	{% if current_user.is_authenticated %}
 	<p> Logged in <a href="{{ url_for('auth_logout') }}">Log out</a></p>
+	<p><a href="{{ url_for('profile_view', account_name=current_user.name) }}">Profile</a>
 	{% else %}
 	<p> <a href="{{url_for('auth_login') }}">Log in</a>
 	<a href="{{url_for('auth_register') }}">Sign up</a>
@@ -24,12 +31,19 @@
 	{% endif %}
 
         <a href="{{ url_for('posts_main') }}">Main page</a>
-	<a hidden href="{{ url_for('posts_index') }}">See all posts</a>
+	
 	<a href="{{ url_for('posts_form') }}">Write a post</a>
 
       {% block body %}
      
       {% endblock %}
+	
+
+	{% block footer %}
+	
+	{% endblock %}	
+   
+		
 	</div>
 	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 

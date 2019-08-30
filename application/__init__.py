@@ -22,6 +22,8 @@ from application.authentication import models
 from application.authentication import views 
 
 from application.authentication.models import User
+
+from application.profiles import views 
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 

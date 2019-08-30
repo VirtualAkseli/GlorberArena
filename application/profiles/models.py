@@ -20,6 +20,25 @@ class Post(db.Model):
 		self.author = "Name of the author"
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	@staticmethod
 	def find_matching_topic_for_post(topic_id):
 		statement = text("SELECT Post.id, Post.content, Post.author, Post.account_id FROM Post"

@@ -1,28 +1,47 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<p>
-  <h2> Welcome to Glörber Arena </h2>
-	<table width="100%">
-	<style>
-	table, article, td {
-	    border: 1px solid black;
-	    padding: 3px;
-	   }
-	</style>
+<div>
+
+  <p><h2> Welcome to Glörber Arena </h2><p>
+
 	
-    
+	
+    <table width="100%">
+	{% if counter is defined %}
+	<tr> <h4> Topics: </h4> </tr>
+	{% endif %}
     {% for topic in topics %}
-<table width="100%">
+   
+	<tr>
     
       <th><a href="{{ url_for('post_id', topic_id = topic.id) }}" >{{ topic.name }}</a></th>
       
+	</tr>
+      
     
     {% endfor %}
-</p>
+    </table>   
+		
+
+
+</div>
+
 {% endblock %}
 
+{% block footer %}
+		
+<div>
+<a href="/main?page={{ 1 }}" >First page</a>
 
+<a href="/main?page={{ counter + 1 }}" >Next page</a>
+<a href="/main?page={{ counter - 1 }}" >Previous page</a>
+<a href="/main?page={{ counter + 1 }}" >Last page</a>
+</div>
+
+
+
+{% endblock %}
   
 	
 

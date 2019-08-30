@@ -11,14 +11,14 @@ def auth_login():
         return render_template("authentication/login.html", form = LoginForm())
 
     form = LoginForm(request.form)
-
+    counter = 0
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
         return render_template("authentication/login.html", form = form,
                                 error = "Check your credentials")
 
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(url_for("posts_main"))
 
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
@@ -36,7 +36,7 @@ def auth_register():
     db.session().commit()
     
     login_user(b)
-    
+    counter = 0
     return redirect(url_for("posts_main"))
 
     

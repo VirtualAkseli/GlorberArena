@@ -7,10 +7,12 @@ posts = ["Tämä on varsin harmillista", "Sienestämisen underground-skene", "Ka
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    counter = 0
+    return render_template("index.html", counter = counter)
 
 @app.route("/posts")
 def content():
+	
 	return render_template("posts.html", posts=posts)
 
 

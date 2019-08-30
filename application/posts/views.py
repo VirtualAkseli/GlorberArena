@@ -10,14 +10,11 @@ from application.posts.forms import PostForm, ReplyForm, EditForm
 
 @app.route("/main")
 def posts_main():
-    return render_template("index.html", topics = Topic.query.all())
+    no_page = request.args.get('page', 1, type=int)
+    no_elements = 5
+    return render_template("index.html", topics = Topic.query.paginate(no_page, no_elements, False).items, counter = no_page)
 
 
-
-@app.route("/index", methods=["GET"])
-@login_required
-def posts_index():
-    return render_template("posts/list.html", posts = Post.query.all())
 
 
 @app.route("/posts/write/")
@@ -74,6 +71,9 @@ def posts_reply(topic_id):
 def post_edit(post_id):
     form = EditForm(request.form)
     post = Post.query.filter_by(id=post_id).first()
+    if (post.account_id != current_user.id):
+        print("OPERATION NOT ALLOWED!")
+        return redirect(url_for("posts_main"))
     post.content = form.content.data
 
     db.session.add(post)
@@ -92,7 +92,7 @@ def post_edit1(post_id):
 def post_id(topic_id):
     
     topic = Topic.query.filter_by(id=topic_id).first()
-    return render_template("posts/single.html", posts = Post.find_matching_topic_for_post(topic_id), subject=topic, form = ReplyForm(), user_id = current_user.id)
+    return render_template("posts/single.html", posts = Post.find_matching_topic_for_post(topic_id), subject=topic, form = ReplyForm(), user_id = current_user.id, volume = Post.count_number_of_posts_by_topic(topic_id))
 
 
 
