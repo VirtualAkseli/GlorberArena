@@ -8,7 +8,7 @@ class Topic(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(144), nullable=False)
         posts = db.relationship("Post", backref='subject', lazy=True)
-        date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+        date_created = db.Column(db.Date, default=db.func.current_timestamp())
 
 
         def __init__(self, name):
