@@ -6,7 +6,7 @@ from sqlalchemy.sql import text
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	topic = db.Column(db.String(144), nullable=False)
-	content = db.Column(db.String(144), nullable=False)
+	content = db.Column(db.String(1000), nullable=False)
 	author = db.Column(db.String(144), nullable=False)
 	date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
 	subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
