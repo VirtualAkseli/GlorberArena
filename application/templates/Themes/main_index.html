@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<head>
+
+<div>
+
+  <p><h2> Welcome to Glörber Arena </h2><p>
+
+	
+	
+    <table width="100%">
+	
+	<tr> <h4> Themes: </h4> </tr>
+	
+    {% for theme in themes %}
+   
+	<tr>
+    
+      <th><a href="{{ url_for('topic_id', theme_id = theme.id) }}" >{{ theme.name }}</a></th>
+      
+	</tr>
+      
+    
+    {% endfor %}
+    </table>   
+		
+
+
+</div>
+{% if current_user.admin == 1 %}
+<div>
+    
+    <form method="POST" action="{{ url_for('theme_create') }}">
+    <p>{{ form.name.label }}</p>
+    <p>{{ form.name }}</p>
+    <input type="submit" value="Submit a new theme of discussion"/>
+    </form>
+    
+</div>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+		
+<div>
+<a href="/index?page={{ 1 }}" >First page</a>
+<a href="/index?page={{ counter - 1 }}" >Previous page</a>
+<a href="/index?page={{ counter + 1 }}" >Next page</a>
+
+<a href="/index?page={{ counter + 1 }}" >Last page</a>
+</div>
+
+
+
+{% endblock %}
+  
+	
+

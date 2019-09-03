@@ -20,7 +20,8 @@ from application.posts import models
 from application.posts import views
 from application.authentication import models 
 from application.authentication import views 
-
+from application.Themes import models 
+from application.Themes import views 
 from application.authentication.models import User
 
 from application.profiles import views 

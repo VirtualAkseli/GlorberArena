@@ -8,6 +8,7 @@ class Topic(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(144), nullable=False)
         posts = db.relationship("Post", backref='subject', lazy=True)
+        theme_id = db.Column(db.Integer, db.ForeignKey('theme.id'), nullable=False)
         date_created = db.Column(db.Date, default=db.func.current_timestamp())
 
 
@@ -30,3 +31,16 @@ class Topic(db.Model):
             return response
 
         
+        @staticmethod
+        def find_matching_topics_for_theme(theme_id):
+            statement = text("SELECT subject.id, subject.name FROM subject"
+                              " LEFT JOIN Theme ON Theme.id = subject.theme_id"
+                              " WHERE (subject.theme_id = :theme_id)"
+                              " GROUP BY subject.id").params(theme_id=theme_id)
+            result = db.engine.execute(statement)
+
+            response = []
+            for row in result:
+                response.append({"id":row[0], "name":row[1]})
+
+            return response

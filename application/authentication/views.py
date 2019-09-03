@@ -18,7 +18,7 @@ def auth_login():
                                 error = "Check your credentials")
 
     login_user(user)
-    return redirect(url_for("posts_main"))
+    return redirect(url_for("Page_index"))
 
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
@@ -26,18 +26,27 @@ def auth_register():
         return render_template("authentication/register.html", form = UserForm())
  
     form = UserForm(request.form)
-
     b = User(form.username.data)
-    b.name = form.name.data
-    b.username = form.username.data
-    b.password = form.password.data
+    usern = User.query.filter_by(username=form.username.data).first()
+    nick = User.query.filter_by(name=form.name.data).first()
+    if not usern and not nick:
+        b.name = form.name.data
+        b.username = form.username.data
+        b.password = form.password.data
 
-    db.session().add(b)
-    db.session().commit()
+        db.session().add(b)
+        db.session().commit()
     
-    login_user(b)
-    counter = 0
-    return redirect(url_for("posts_main"))
+        login_user(b)
+    else:
+        if usern and nick:
+            return render_template("authentication/register.html", form = form, error = "Username and nick taken")
+        if usern:
+            return render_template("authentication/register.html", form = form, error = "Username taken")
+        if nick:
+            return render_template("authentication/register.html", form = form, error = "Nick taken")
+
+    return redirect(url_for("Page_index"))
 
     
 

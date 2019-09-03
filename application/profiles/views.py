@@ -11,8 +11,8 @@ from application.posts.forms import PostForm, ReplyForm, EditForm
 @app.route("/profiles/<account_name>")
 @login_required
 def profile_view(account_name):
-    
-    return render_template("profiles/profile.html", account=current_user, posts=User.find_posts_by_user(current_user.id), no_posts=User.find_quant_of_posts_by_user(current_user.id))
+    this_user = User.query.filter_by(name=account_name).first()
+    return render_template("profiles/profile.html", account=this_user, posts=User.find_posts_by_user(this_user.id), no_posts=User.find_quant_of_posts_by_user(this_user.id))
 
 
 

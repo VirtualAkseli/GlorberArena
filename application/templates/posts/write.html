@@ -11,7 +11,7 @@
 	</style>
 
 <div class="row">
-<form method="POST" action="{{ url_for('posts_create') }}">
+<form method="POST" action="{{ url_for('posts_create', theme_num = theme_id) }}">
  	<td>
 	  <ul>
 	    {% for error in form.content.errors %}

@@ -17,16 +17,16 @@ def posts_main():
 
 
 
-@app.route("/posts/write/")
+@app.route("/posts/write/<theme_num>")
 @login_required
-def posts_form():
-    return render_template("posts/write.html", form = PostForm())
+def posts_form(theme_num):
+    return render_template("posts/write.html", form = PostForm(), theme_id = theme_num)
 
 
 
-@app.route("/posts/", methods=["POST"])
+@app.route("/<theme_num>/posts/", methods=["POST"])
 @login_required
-def posts_create():
+def posts_create(theme_num):
 
     form = PostForm(request.form)
 
@@ -34,6 +34,7 @@ def posts_create():
     	return render_template("posts/write.html", form = form)
 
     b = Topic(form.topic.data)
+    b.theme_id = theme_num
     db.session().add(b)
     db.session().commit()
     Subject = Topic.query.filter_by(name=form.topic.data).first()
@@ -47,7 +48,7 @@ def posts_create():
   
     db.session().commit()
   
-    return redirect(url_for("posts_main"))
+    return redirect(url_for("topic_id", theme_id = theme_num))
 
 @app.route("/posts/reply/<topic_id>", methods=["POST"])
 @login_required

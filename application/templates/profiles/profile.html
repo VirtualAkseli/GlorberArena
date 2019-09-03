@@ -6,7 +6,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"/>
     <div>Number of posts: {{ no_posts }}</div>
     <div>{% for post in posts %}
-	  <a href="">{{ post.topic }}</a>
+	  <ul><a href="">{{ post.topic }}</a></ul>
 	  {% endfor %}
     </div>
 {% endblock %}
