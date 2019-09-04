@@ -31,24 +31,30 @@ def posts_create(theme_num):
     form = PostForm(request.form)
 
     if not form.validate():
-    	return render_template("posts/write.html", form = form)
+    	return render_template("posts/write.html", form = form, theme_id=theme_num)
 
     b = Topic(form.topic.data)
-    b.theme_id = theme_num
-    db.session().add(b)
-    db.session().commit()
-    Subject = Topic.query.filter_by(name=form.topic.data).first()
+    old_topic = Topic.query.filter_by(name=form.topic.data).first()
 
-    a = Post(request.form.get("content"))
-    a.topic = form.topic.data
-    a.author = current_user.name
-    a.account_id = current_user.id
-    a.subject_id = Subject.id
-    db.session().add(a)
+    if not old_topic:
+        b.theme_id = theme_num
+        db.session().add(b)
+        db.session().commit()
+        Subject = Topic.query.filter_by(name=form.topic.data).first()
+
+        a = Post(request.form.get("content"))
+        a.topic = form.topic.data
+        a.author = current_user.name
+        a.account_id = current_user.id
+        a.subject_id = Subject.id
+        db.session().add(a)
   
-    db.session().commit()
+        db.session().commit()
   
-    return redirect(url_for("topic_id", theme_id = theme_num))
+        return redirect(url_for("topic_id", theme_id = theme_num))
+
+    else:
+        return render_template("posts/write.html", form=form, error="Topic already taken!", theme_id=theme_num)
 
 @app.route("/posts/reply/<topic_id>", methods=["POST"])
 @login_required

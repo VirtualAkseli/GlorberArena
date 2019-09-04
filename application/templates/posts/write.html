@@ -14,9 +14,9 @@
 <form method="POST" action="{{ url_for('posts_create', theme_num = theme_id) }}">
  	<td>
 	  <ul>
-	    {% for error in form.content.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
+	    {% if error is defined %}
+	    {{ error }}
+	    {% endif %}
 	  </ul>
           
 	</td>
