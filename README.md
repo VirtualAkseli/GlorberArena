@@ -5,7 +5,7 @@ Kaiken Glörber -underground multimediakollektiiviin liittyvän asiain puimiseen
 ##
 Testitunnuksena käytämme tunnusta "LeroJ", jonka salasana on "1234".   
 Voit myös luoda oman tunnuksen!  
-admin tunnus on kovakoodattu, tunnnukset `` admin | sekred ``
+admin tunnus on kovakoodattu, tunnnukset (jaolla käyttäjätunnus | salasana): `` admin | sekred ``
 [Glörber-Arena](https://glorber-arena.herokuapp.com/index)
 ## Tietokantakaavio
 ![testext](https://raw.githubusercontent.com/VirtualAkseli/GlorberArena/master/db.png "structural layout" )
