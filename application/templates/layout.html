@@ -4,51 +4,55 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Glörber_Arena</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"     			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 			crossorigin="anonymous">
      
 	
-	<style>
+      <style>
 	table, td, th, div, p {
 	    border: 1px solid black;
 	    padding: 10px;
 	   }
-	</style>
+      </style>
     </head>
 
     <body>
-	<div id="section_top">
-		<table width="100%">
-			<tbody><tr><td>- G L Ö R B E R  A R E N A -</td></tr></tbody>		
-		</table>
+        <div id="section_top" >
+	    <table width="100%">
+	        <tbody>
+                    <tr ><td class="col align-self-center"> G L Ö R B E R  A R E N A </td></tr>
+                </tbody>		
+	    </table>
 	
-	{% if current_user.is_authenticated %}
-	<p> Logged in <a href="{{ url_for('auth_logout') }}">Log out</a></p>
-	<p><a href="{{ url_for('profile_view', account_name=current_user.name) }}">Profile</a>
-	{% else %}
-	<p> <a href="{{url_for('auth_login') }}">Log in</a>
-	<a href="{{url_for('auth_register') }}">Sign up</a>
-	</p>
-	{% endif %}
+	    {% if current_user.is_authenticated %}
+	    <p> Logged in <a href="{{ url_for('auth_logout') }}">Log out</a></p>
+	    <p><a href="{{ url_for('profile_view', account_name=current_user.name) }}">Profile</a>
+	    {% else %}
+	    <p> 
+                <a href="{{url_for('auth_login') }}">Log in</a>
+	        <a href="{{url_for('auth_register') }}">Sign up</a>
+	    </p>
+	    {% endif %}
 
-        <a href="{{ url_for('Page_index') }}">Main page</a>
+            <a href="{{ url_for('Page_index') }}">Main page</a>
 	
 	
 
-      {% block body %}
+            {% block body %}
      
-      {% endblock %}
+            {% endblock %}
 	
 
-	{% block footer %}
+            {% block footer %}
 	
-	{% endblock %}	
+            {% endblock %}	
    
 		
 	</div>
-	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 			crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 			        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 				crossorigin="anonymous"></script>
 
         
     </body>

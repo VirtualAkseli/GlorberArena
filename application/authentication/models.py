@@ -45,7 +45,10 @@ class User(db.Model):
         res = db.engine.execute(a)
         b = []
         for row in res:
-                b.append({"id":row[0], "topic":row[1]})
+                    if not row[1] in b:
+                        b.append(row[1])
+
+        
         return b
   
     def get_id(self):
@@ -63,4 +66,4 @@ class User(db.Model):
     def get_name(self):
         return self.name
 
-
+    

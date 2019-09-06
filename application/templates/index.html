@@ -1,49 +1,51 @@
-{% extends "layout.html" %}
-
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 <head>
-
 <div>
+    <h2>{{ name }}</h2>
+</div>
+  <div>
+    
 
-  <p><h2> {{ name }} </h2><p>
-
-	
-	
     <table width="100%">
-	{% if counter is defined and current_user is defined%}
-	<tr> <h4> Topics: </h4> </tr>
-	{% endif %}
-    {% for topic in topics %}
-   
-	<tr>
-    
-      <th><a href="{{ url_for('post_id', topic_id = topic.id) }}" >{{ topic.name }}</a></th>
-      
-	</tr>
-      
-    
-    {% endfor %}
-    </table>   
-		
-<th><h5><a href="{{ url_for('posts_form', theme_num = theme_id )}}">Write a new post</a></h5>
-</th>
-</div>
+      {% if counter is defined and current_user is defined%}
+      <tr>
+        <h4>Topics:</h4>
+      </tr>
+      {% endif %} 
+     
+      {% for topic in topics %}
 
-{% endblock %}
+      <tr>
+        <th>
+          <h5><a href="{{ url_for('post_id', topic_id = topic.id) }}">
+              {{ topic.name }}
+              </a>
+          </h5>
+        </th>
+      </tr>
 
-{% block footer %}
-		
-<div>
-<a href="/{{ theme_id }}?page={{ 1 }}" >First page</a>
-<a href="/{{ theme_id }}?page={{ counter - 1 }}" >Previous page</a>
-<a href="/{{ theme_id }}?page={{ counter + 1 }}" >Next page</a>
+      {% endfor %}
+    </table>
 
-<a href="/{{ theme_id }}?page={{ counter + 1 }}" >Last page</a>
-</div>
+    <div>
+      <h6>
+        <a href="{{ url_for('posts_form', theme_num = theme_id )}}"
+          >Write a new post</a
+        >
+      </h6>
+    </div>
+  </div>
 
+  {% endblock %} {% block footer %}
 
+  <div>
+    <a href="/{{ theme_id }}?page={{ 1 }}">First page</a>
+    <a href="/{{ theme_id }}?page={{ counter - 1 }}">Previous page</a>
+    <a href="/{{ theme_id }}?page={{ counter + 1 }}">Next page</a>
 
-{% endblock %}
-  
-	
+    <a href="/{{ theme_id }}?page={{ counter + 1 }}">Last page</a>
+  </div>
+
+  {% endblock %}
+</head>
 

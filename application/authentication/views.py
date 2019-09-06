@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 from application import app, db
 from application.authentication.models import User
@@ -55,3 +55,9 @@ def auth_register():
 def auth_logout():
     logout_user()
     return redirect(url_for("index"))
+
+@app.route("/profiles/<account_name>")
+@login_required
+def profile_view(account_name):
+    this_user = User.query.filter_by(name=account_name).first()
+    return render_template("profiles/profile.html", account=this_user, posts=User.find_posts_by_user(this_user.id), no_posts=User.find_quant_of_posts_by_user(this_user.id))

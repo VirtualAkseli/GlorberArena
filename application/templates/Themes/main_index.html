@@ -2,33 +2,36 @@
 
 {% block body %}
 <head>
+<div>
+    {% if error is defined %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <h2> Welcome to Glörber Arena </h2>
+</div>
 
 <div>
 
-  <p><h2> Welcome to Glörber Arena </h2><p>
-
-	
-	
     <table width="100%">
 	
 	<tr> <h4> Themes: </h4> </tr>
 	
-    {% for theme in themes %}
+        {% for theme in themes %}
    
-	<tr>
+	    <tr>
     
-      <th><a href="{{ url_for('topic_id', theme_id = theme.id) }}" >{{ theme.name }}</a></th>
+                <th><h5><a href="{{ url_for('topic_id', theme_id = theme.id) }}" >{{ theme.name }}</a></h5></th>
       
-	</tr>
+	    </tr>
       
     
-    {% endfor %}
+        {% endfor %}
+    
     </table>   
 		
-
-
 </div>
+
 {% if current_user.admin == 1 %}
+
 <div>
     
     <form method="POST" action="{{ url_for('theme_create') }}">

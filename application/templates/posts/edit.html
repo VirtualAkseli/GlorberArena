@@ -3,17 +3,17 @@
 {% block body %}
 <form method="POST" action="{{ url_for('post_edit', post_id = id) }}">
  	
+    <table>
 
-<table>
+        <tr>
+            
+            <th>
+                {{ form.content}}
+            </th>
+        </tr>
+    </table>
 
-<tr>
-<th>
-</th>
-<th>
-    {{ form.content}}
-</th>
-</tr>
-</table>
-  <input type="submit" value="Reply to post"/>
+    <input type="submit" value="Reply to post"/>
+
 </form>
 {% endblock %}

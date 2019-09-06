@@ -20,11 +20,11 @@ from application.posts import models
 from application.posts import views
 from application.authentication import models 
 from application.authentication import views 
-from application.Themes import models 
-from application.Themes import views 
+from application.themes import models 
+from application.themes import views 
 from application.authentication.models import User
 
-from application.profiles import views 
+
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 

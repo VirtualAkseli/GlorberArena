@@ -4,16 +4,16 @@
 <form method="POST" action="{{ url_for('posts_create') }}">
  	
 
-<table>
+    <table>
 
-<tr>
-<th>
-</th>
-<th>
-    {{ form.content}}
-</th>
-</tr>
-</table>
-  <input type="submit" value="Reply to post"/>
+        <tr>
+            <th>
+                {{ form.content}}
+            </th>
+        </tr>
+     </table>
+     
+     <input type="submit" value="Reply to post"/>
+
 </form>
 {% endblock %}

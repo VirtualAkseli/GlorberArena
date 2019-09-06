@@ -3,44 +3,45 @@
 {% block body %}
 <div class="container">
   
-<style>
-	table, article, td, p {
-	    border: 1px solid black;
-	    padding: 3px;
-	   }
-	</style>
+    
 
-<div class="row">
-<form method="POST" action="{{ url_for('posts_create', theme_num = theme_id) }}">
- 	<td>
-	  <ul>
-	    {% if error is defined %}
-	    {{ error }}
-	    {% endif %}
-	  </ul>
+    
+        
+        <form method="POST" action="{{ url_for('posts_create', theme_num = theme_id) }}">
+ 	    <td>
+	        <ul>
+	            {% if error is defined %}
+	            {{ error }}
+	            {% endif %}
+	        </ul>
           
-	</td>
-<div class="col align-self-center">
-<table>
-<tr>
-<th>
-    {{ form.topic.label }}
-</th>
-<th>
-    {{ form.topic }} 
-</th>
-</tr>
-<tr>
-<th>
-</th>
-<th>
-    {{ form.content}}
-</th>
-</tr>
-</table>
-<div>
-  <input type="submit" value="Submit new post"/>
-</form>
+	    </td>
+
+            
+                <table>
+                    <tr>
+                        <th>
+                            {{ form.topic.label }}
+                        </th>
+                        <th>
+                        {{ form.topic }} 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ form.content.label }}
+                        </th>
+                        <th>
+                            {{ form.content}}
+                        </th>
+                    </tr>
+                </table>
+                
+            
+            <div>
+                <input type="submit" value="Submit new post"/>
+            </div>
+        </form>
 
 </div>
 {% endblock %}

@@ -1,9 +1,9 @@
 from application import app, db
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from application.posts.models import Post
-from application.posts.subject import Topic
+from application.posts.models import Topic
 from application.authentication.models import User
 from application.posts.forms import PostForm, ReplyForm, EditForm
 
@@ -54,6 +54,7 @@ def posts_create(theme_num):
         return redirect(url_for("topic_id", theme_id = theme_num))
 
     else:
+        flash("Topic already taken!")
         return render_template("posts/write.html", form=form, error="Topic already taken!", theme_id=theme_num)
 
 @app.route("/posts/reply/<topic_id>", methods=["POST"])
@@ -93,6 +94,19 @@ def post_edit(post_id):
 def post_edit1(post_id):
     return render_template("posts/edit.html", id=post_id, form = EditForm())
 
+@app.route("/posts/delete/<post_id>", methods=["GET", "POST", "DELETE"])
+@login_required
+def post_delete(post_id):
+    
+    post = Post.query.filter_by(id=post_id).first()
+    if (post.account_id != current_user.id):
+        print("OPERATION NOT ALLOWED!")
+        return redirect(url_for("posts_main"))
+    
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(url_for("Page_index"))
 
 @app.route("/posts/<topic_id>")
 @login_required

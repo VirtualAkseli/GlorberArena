@@ -14,25 +14,27 @@
   <table>
     <tr>
       
-      <td>
-	"nick"
-	{{ form.name }}
-      </td>
+        <td>
+	    "nick"
+	    {{ form.name }}
+        </td>
 
-	    <td>
-		{{ form.username.label }}
-		{{ form.username }}
-            </td>
+        <td>
+	    {{ form.username.label }}
+	    {{ form.username }}
+        </td>
 
-      <td>
-	{{ form.password.label }}	
-	{{ form.password }}
-      </td>
+        <td>
+	    {{ form.password.label }}	
+	    {{ form.password }}
+        </td>
     </tr>
     <tr>
-      <td colspan="2">
-	<input type="submit" value="Register"/>
-      </td>
+
+        <td colspan="2">
+	    <input type="submit" value="Register"/>
+        </td>
     </tr>
+  </table>
 </form>
 {% endblock %}

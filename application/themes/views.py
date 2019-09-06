@@ -2,11 +2,11 @@ from application import app, db
 from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 
-from application.posts.subject import Topic
-from application.Themes.models import Theme
+from application.posts.models import Topic
+from application.themes.models import Theme
 from application.authentication.models import User
 
-from application.Themes.forms import ThemeForm
+from application.themes.forms import ThemeForm
 
 @app.route("/index")
 def Page_index():
@@ -28,7 +28,9 @@ def topic_id(theme_id):
 @app.route("/new_theme/", methods=["POST"])
 @login_required
 def theme_create():
-
+    if not (current_user.admin == 1):
+        errmsg = "Warning! Unauthorized operation! Report your findings to administrators immediately"
+        return redirect(url_for("Page_index", error = errmsg))
     form = ThemeForm(request.form)
 
     if not form.validate():

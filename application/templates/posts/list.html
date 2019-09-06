@@ -1,31 +1,35 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table width="100%">
-	<style>
+<table width="100%">
+    <style>
 	table, article, td {
 	    border: 1px solid black;
 	    padding: 3px;
-	   }
-	</style>
+	}
+    </style>
 	
     
-    {% for post in posts %}
-<table width="100%">
+{% for post in posts %}
+    <div>
+        <h4>{{ post.topic }}</h4>
+    </div>
+    <table width="100%">
     
-      <th>{{ post.topic }}</th>
-      
+        
     
-    <tr>
+        <tr>
       
-      <td>{{ post.content }}</td>
+            <td>{{ post.content }}</td>
       
-    </tr>
-    <tr>
-	<td>{{ post.author }}</td></td>
-    </tr>
+        </tr>
+        
+        <tr>
+	    <td>{{ post.author }}</td></td>
+        </tr>
+
+    </table>
+{% endfor %}
+	
 </table>
-    {% endfor %}
-	
-  </table>
 {% endblock %}

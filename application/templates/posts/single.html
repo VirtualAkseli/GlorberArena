@@ -1,46 +1,52 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div class="container">
+
+<div>
+    
+    
+    <h4>{{ subject.name }}</h4>
+        {% if volume[0] < 1 %}
+        <p>Oops! It seems that the original poster has deleted his post!</p>
+        {% else %}
+        Replies: {{ volume[0] - 1 }}
+        {% endif %}
+    
+</div>
+
+<div>
 
 	
 	
     
-
-<h5>{{ subject.name }}</h5>
- 
-<p>
-Replies: {{ volume[0] - 1 }}
-
-</p>
+    
+    
     
 
     {% for post in posts %}
 
       
       
-    <div class="col">
+        <div class="col">
 	
-      <p>{{ post.content }}</p>
+            <p>{{ post.content }}</p>
       
-    
+            <a href="{{ url_for('profile_view', account_name = post.author) }}">{{ post.author }}</a>
 	
-	
-	<p><a href="{{ url_for('profile_view', account_name = post.author) }}">{{ post.author }}</a></p>
-	
-    
-	
-	
-	</div>
+        </div>
 	
     
-	{% if post.account_id == user_id %}
-    <p><a href="{{ url_for('post_edit1', post_id = post.id) }}">Edit</a></p>
+        {% if post.account_id == user_id %}
+            <p><a href="{{ url_for('post_edit1', post_id = post.id) }}">Edit</a>
+	       <a href="{{ url_for('post_delete', post_id = post.id) }}" onclick="return confirm('Are you sure?');">Delete</a></p>
 
-	{% else %}
+
+        {% else %}
 	
-	<p></p>
-	{% endif %}
+	    <p></p>
+
+        {% endif %}
+
     {% endfor %}
 
 	
@@ -49,26 +55,29 @@ Replies: {{ volume[0] - 1 }}
 
 
 <form method="POST" action="{{ url_for('posts_reply', topic_id = subject.id) }}">
- 	<td>
-
-	  <ul>
+    <td>
+        <ul>
 	    {% for error in form.content.errors %}
 	    <li>{{ error }}</li>
 	    {% endfor %}
-	  </ul>
+	</ul>
           
-	</td>
+    </td>
 
 <table>
 
-<tr>
+    <tr>
 
-<th>
-    {{ form.content}}
-</th>
-</tr>
+        <th>
+            {{ form.content}}
+        </th>
+   
+    </tr>
+
 </table>
+
   <input type="submit" value="Submit reply"/>
+
 </form>
 </div>
 
