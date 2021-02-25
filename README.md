@@ -1,5 +1,5 @@
 # Glörber Arena
-Kaiken Glörber -underground multimediakollektiiviin liittyvän asiain puimiseen pyhitetty keskustelupalsta.
+Keskustelupalsta vailla keskustelijoita tahi teemaa.
 ## Käyttötarinat
 [numero 1](https://github.com/VirtualAkseli/GlorberArena/blob/master/documentation/user_story1.md)
 ##
